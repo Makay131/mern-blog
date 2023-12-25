@@ -3,3 +3,33 @@
 @tailwind utilities;
 
 
+@layer components {
+  * {
+    @apply m-0 p-0 box-border text-base duration-100;
+  }
+  
+  html{
+    @apply overflow-x-hidden;
+  }
+  
+  body {
+    @apply font-normal text-black;
+  }
+
+  .show {
+    @apply opacity-100 pointer-events-auto;
+  }
+  .hide {
+    @apply opacity-0 pointer-events-none duration-100;
+  }
+  .link{
+    @apply text-gray-800 hover:text-black hover:bg-gray-300 p-3 px-4 block opacity-75;
+  }
+  .btn-dark{
+    @apply whitespace-nowrap bg-black text-white rounded-full py-3 px-6 text-xl capitalize hover:bg-opacity-80;
+  }
+  .btn-light{
+    @apply btn-dark bg-gray-200 text-black;
+  }
+}
+
