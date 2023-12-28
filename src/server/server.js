@@ -1,6 +1,8 @@
 const express = require("express");
 const mongoose = require('mongoose');
 const dotenv = require("dotenv/config");
+const bcrypt = require('bcrypt');
+const nanoid = require("nanoid");
 
 
 const server = express();
