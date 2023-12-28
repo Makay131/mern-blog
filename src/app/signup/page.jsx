@@ -1,8 +1,8 @@
+import UserAuthForm from "../components/UserAuthForm";
+
 function SignUp() {
     return (
-        <div>
-            signUp
-        </div>
+        <UserAuthForm type="sign-up" />
     )
 }
 
