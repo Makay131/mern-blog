@@ -13,7 +13,6 @@ mongoose.connect(process.env.DB_CONNECTION, {
 });
 
 server.post("/signup", (req, res) => {
-    console.log(req.body)
     res.json(req.body)
 })
 
