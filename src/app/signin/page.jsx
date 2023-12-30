@@ -2,7 +2,7 @@ import UserAuthForm from "../components/UserAuthForm";
 
 function SignIn() {
     return (
-        <UserAuthForm type="sign-in" />
+        <UserAuthForm key="sign-in" type="sign-in" />
     )
 }
 

@@ -2,7 +2,7 @@ import UserAuthForm from "../components/UserAuthForm";
 
 function SignUp() {
     return (
-        <UserAuthForm type="sign-up" />
+        <UserAuthForm key="sign-up" type="sign-up" />
     )
 }
 
