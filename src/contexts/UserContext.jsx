@@ -1,3 +1,4 @@
+"use client";
 import { searchInSession } from "@/common/session";
 import { createContext, useContext, useEffect, useState } from "react";
 

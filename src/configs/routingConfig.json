@@ -1,0 +1,8 @@
+{
+    "customRoutes": [
+        {
+            "key": "editor",
+            "customNav": true
+        }
+    ]
+}

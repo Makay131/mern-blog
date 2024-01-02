@@ -6,10 +6,15 @@ import { useState } from "react";
 import { FaPencilAlt, FaSearch } from "react-icons/fa";
 import { GoBell } from "react-icons/go";
 import UserNavigationPanel from "./userNav";
+import { usePathname } from "next/navigation";
+import config from "../../configs/routingConfig.json";
 
 function Navbar() {
     const [searchVisible, setSearchVisible] = useState(false);
     const [userNavPanel, setUserNavPanel] = useState(false);
+    
+    const pathname = usePathname();
+    const isCustomNavbar = config.customRoutes?.find(r => pathname.includes(r.key))?.customNav;
 
     const { userAuth, userAuth: { access_token, profile_img } } = useAuth();
 
@@ -21,6 +26,8 @@ function Navbar() {
             setUserNavPanel(false);
         }, 200)
     }
+    if(isCustomNavbar) return null;
+    else
     return (
         <nav className="z-10 sticky top-0 flex items-center gap-12 w-full px-[5vw] py-5 h-[80px] border-b border-grey bg-white">
             <Link href="/">
