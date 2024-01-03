@@ -6,6 +6,8 @@ const nanoid = require("nanoid");
 const jwt = require("jsonwebtoken");
 const User = require("./models/User");
 const cors = require("cors");
+const appwrite = require("node-appwrite");
+const crypto = require('crypto');
 
 
 const app = express();
@@ -19,6 +21,13 @@ app.use(cors());
 mongoose.connect(process.env.DB_CONNECTION, {
     autoIndex: true,
 });
+
+const appwriteClient = new appwrite.Client();
+
+appwriteClient
+    .setEndpoint(process.env.APPWRITE_API_ENDPOINT)
+    .setProject(process.env.APPWRITE_PROJECT_ID)
+    .setKey(process.env.BUCKET_API_KEY);
 
 const formatUserToBeSent = (user) => {
     //require('crypto').randomBytes(64).toString('hex') ---> in the terminal after 'node'

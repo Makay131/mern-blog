@@ -1,10 +1,12 @@
 import Image from "next/image"
 import AnimationWrapper from "./animationWrapper"
+import { uploadImage } from "@/service";
 
 function BlogEditor() {
-  const handleBannerUpload = (e) => {
+  const handleBannerUpload = async (e) => {
     let img = e.target.files[0];
-    console.log(img)
+    const data = await uploadImage(img);
+    console.log(data)
   }
 
   return (
