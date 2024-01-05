@@ -1,12 +1,30 @@
 import Image from "next/image"
 import AnimationWrapper from "./animationWrapper"
 import { uploadImage } from "@/service";
+import { useState } from "react";
+import toast from "react-hot-toast";
 
 function BlogEditor() {
+  const [imageSource, setImageSource] = useState("/blog-banner.png");
+
   const handleBannerUpload = async (e) => {
     let img = e.target.files[0];
-    const data = await uploadImage(img);
-    console.log(data)
+    if(img) {
+      let loadingToast = toast.loading("Uploading...");
+      try {
+        const data = await uploadImage(img);
+        console.log(data)
+        if(data?.imageURL) {
+          toast.dismiss(loadingToast);
+          toast.success("Image successfully uploaded!");
+          setImageSource(data.imageURL);
+        }
+      } catch(err) {
+        toast.dismiss(loadingToast);
+        return toast.error(err)
+      }
+
+    }
   }
 
   return (
@@ -30,7 +48,7 @@ function BlogEditor() {
             <div className="relative aspect-video bg-white border-4 border-grey hover:opacity-80">
               <label>
                 <div className="z-20">
-                  <Image src="/blog-banner.png" alt="banner image" fill={true} />
+                  <Image src={imageSource} alt="banner image" fill={true} />
                 </div>
                 <input type="file" id="uploadBanner" accept=".png, .jpg, .jpeg" hidden onChange={handleBannerUpload} />
               </label>

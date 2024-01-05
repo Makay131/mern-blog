@@ -27,9 +27,11 @@ export const userAuthThroughServer = async (route, formData) => {
 }
 
 export const uploadImage = async (file) => {
+    const randomId = Math.random() * 100000;
     try {
-        const res = await storage.createFile(process.env.NEXT_PUBLIC_APPWRITE_BUCKET_ID, Math.random() * 100000, file);
-        return res;
+        const res = await storage.createFile(process.env.NEXT_PUBLIC_APPWRITE_BUCKET_ID, randomId, file);
+        const imageURL = `${process.env.NEXT_PUBLIC_APPWRITE_API_ENDPOINT}/storage/buckets/${process.env.NEXT_PUBLIC_APPWRITE_BUCKET_ID}/files/${res.$id}/view?project=${process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID}`
+        return {...res, imageURL};
     } catch(err) {
         console.log(err)
     }
