@@ -4,17 +4,21 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import BlogEditor from "./blogEditor";
 import PublishForm from "./publishForm";
+import { EditorProvider, useEditor } from "@/contexts/EditorContext";
 
 function Editor() {
-    const [editorState, setEditorState] = useState("editor")
-
     const router = useRouter();
     const {userAuth: { access_token }} = useAuth();
+    const [editorState, setEditorState] = useState("editor");
+    
     useEffect(() => {
         access_token === null ? router.push('/signin') : ""
     }, [access_token, router])
+    
     return (
-    editorState === 'editor' ? <BlogEditor /> : <PublishForm />
+      <EditorProvider>
+          {editorState === 'editor' ? <BlogEditor /> : <PublishForm />}
+      </EditorProvider>
   )
 }
 
